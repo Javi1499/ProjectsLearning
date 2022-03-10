@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 import { createProductAction } from "actions/productsActions";
-const Component = () => {
+const Component = ({ history }) => {
   //state del componente
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   //Use dispatc and create a function
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
+  //Access to store state
+  const { loading, error } = useSelector((state) => state.products);
   //Call to action
   const addProduct = (product) => {
     dispatch(createProductAction(product));
@@ -22,6 +26,9 @@ const Component = () => {
       name,
       price,
     });
+
+    //redirect
+    navigate("/");
   };
   return (
     <div className="row justify-content-center">
@@ -61,6 +68,12 @@ const Component = () => {
                 Add
               </button>
             </form>
+            {loading && <p>Loading...</p>}
+            {error && (
+              <p className="alert alert-danger p2 mt-4 text-center">
+                Set a valid product
+              </p>
+            )}
           </div>
         </div>
       </div>

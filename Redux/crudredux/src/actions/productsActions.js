@@ -5,6 +5,13 @@ import {
   START_DOWNLOAD_PRODUCTS,
   DOWNLOAD_PRODUCTS_SUCCESS,
   DOWNLOAD_PRODUCTS_ERROR,
+  GET_PRODUCT_DELETE,
+  PRODUCT_DELETE_SUCCESS,
+  PRODUCT_DELETE_ERROR,
+  GET_PRODUCT_EDIT,
+  PRODUCT_EDIT_SUCCESS,
+  PRODUCT_EDIT_ERROR,
+  START_EDIT_PRODUCT,
 } from "types";
 import axiosClient from "config/axios";
 import Swal from "sweetalert2";
@@ -74,4 +81,62 @@ const downloadProductsSuccess = (products) => ({
 const downloadProductsError = () => ({
   type: DOWNLOAD_PRODUCTS_ERROR,
   payload: true,
+});
+
+//S
+export function deleteProductAction(id) {
+  return async (dispatch) => {
+    console.log(id);
+    dispatch(getProductDelete(id));
+
+    try {
+      await axiosClient.delete(`/productos/${id}`);
+      dispatch(deleteProductSuccess());
+    } catch (error) {
+      console.log(error);
+      dispatch(deleteProductError());
+    }
+  };
+}
+const getProductDelete = (id) => ({
+  type: GET_PRODUCT_DELETE,
+  payload: id,
+});
+
+const deleteProductSuccess = () => ({
+  type: PRODUCT_DELETE_SUCCESS,
+});
+
+const deleteProductError = () => ({
+  type: PRODUCT_DELETE_ERROR,
+  payload: true,
+});
+
+export function getEditProduct(product) {
+  return (dispatch) => {
+    dispatch(getProductAction(product));
+  };
+}
+
+const getProductAction = (product) => ({
+  type: GET_PRODUCT_EDIT,
+  payload: product,
+});
+
+export function productEditAction(product) {
+  return async (dispatch) => {
+    dispatch(editProduct());
+    try {
+      await axiosClient.put(`/productos/${product.id}`, product);
+      dispatch(editProductSuccess(product));
+    } catch (error) {}
+  };
+}
+const editProduct = () => ({
+  type: START_EDIT_PRODUCT,
+});
+
+const editProductSuccess = (product) => ({
+  type: PRODUCT_EDIT_SUCCESS,
+  payload: product,
 });

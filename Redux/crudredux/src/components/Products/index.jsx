@@ -9,10 +9,16 @@ const Component = () => {
     const getProducts = () => dispatch(getProductsAction());
     getProducts();
   }, []);
-  const { products } = useSelector((state) => state.products);
+  const { products, error, loading } = useSelector((state) => state.products);
   return (
     <Fragment>
       <h2 className="text-center my-5">Product list</h2>
+      {error && (
+        <p className="font-weight-bold alert alert-danger text-center mt-4 ">
+          Error exist
+        </p>
+      )}
+      {loading && <p className="text-center">Loading...</p>}
       <table className="table table-striped">
         <thead className="bg-primary table-dark ">
           <tr>

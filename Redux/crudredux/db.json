@@ -2,58 +2,13 @@
   "productos": [
     {
       "id": 1,
-      "name": "Jugo de Zanahoria",
-      "price": "31111"
-    },
-    {
-      "id": 2,
-      "name": "Jugo de Naranja",
-      "price": "1"
+      "name": "Jugo de Zanahoriaujuy",
+      "price": "558"
     },
     {
       "name": "Jugo de Naranja",
-      "price": "300",
+      "price": "350",
       "id": 3
-    },
-    {
-      "name": "Rib Eye 800g",
-      "price": "200",
-      "id": 4
-    },
-    {
-      "name": "Jugo de Fresa",
-      "price": "200",
-      "id": 5
-    },
-    {
-      "name": "Queso",
-      "price": 780,
-      "id": 6
-    },
-    {
-      "name": "Babas",
-      "price": 134,
-      "id": 7
-    },
-    {
-      "name": "kjh",
-      "price": 98,
-      "id": 8
-    },
-    {
-      "name": "Arroz",
-      "price": 98,
-      "id": 9
-    },
-    {
-      "name": "Jamon",
-      "price": 43,
-      "id": 10
-    },
-    {
-      "name": "Jamon",
-      "price": 23,
-      "id": 11
     }
   ]
 }

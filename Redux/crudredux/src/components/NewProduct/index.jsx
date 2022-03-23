@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createProductAction } from "actions/productsActions";
+import { showAlert, hideAlertAction } from "actions/alertActions";
+
 const Component = ({ history }) => {
   //state del componente
   const [name, setName] = useState("");
@@ -13,6 +15,7 @@ const Component = ({ history }) => {
 
   //Access to store state
   const { loading, error } = useSelector((state) => state.products);
+  const { alert } = useSelector((state) => state.alert);
   //Call to action
   const addProduct = (product) => {
     dispatch(createProductAction(product));
@@ -20,8 +23,16 @@ const Component = ({ history }) => {
 
   const submitProduct = (e) => {
     e.preventDefault();
-    if (name.trim() === "" || price <= 0) return;
+    if (name.trim() === "" || price <= 0) {
+      const alert = {
+        msg: "Both fields was required",
+        classes: "alert alert-danger text-center text-uppercase p3",
+      };
+      dispatch(showAlert(alert));
+      return;
+    }
 
+    dispatch(hideAlertAction());
     addProduct({
       name,
       price,
@@ -38,6 +49,7 @@ const Component = ({ history }) => {
             <h2 className="text-center mb-4 font-weight-bold">
               Add New Product
             </h2>
+            {alert && <p className={alert.classes}>{alert.msg}</p>}
             <form onSubmit={submitProduct}>
               <div className="form-group">
                 <label>Product Name</label>

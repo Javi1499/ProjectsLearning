@@ -9,6 +9,11 @@
       "name": "Jugo de Naranja",
       "price": "350",
       "id": 3
+    },
+    {
+      "name": "Jamon",
+      "price": 123,
+      "id": 6
     }
   ]
 }

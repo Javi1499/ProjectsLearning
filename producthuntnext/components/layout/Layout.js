@@ -65,7 +65,7 @@ const Layout = (props) => {
         <link href="/static/css/app.css" rel="stylesheet" />
       </Head>
       <Header />
-      <main>{props.children}</main>;
+      <main>{props.children}</main>
     </>
   );
 };

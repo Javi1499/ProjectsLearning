@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./config";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 import {
   createUserWithEmailAndPassword,
@@ -15,6 +16,8 @@ class Firebase {
     const app = initializeApp(firebaseConfig);
     this.auth = getAuth(app);
     this.db = getFirestore();
+    this.storage = getStorage(app);
+    // this.storageRef = ref(this.storage, "products");
   }
 
   async signUp(name, email, password) {
